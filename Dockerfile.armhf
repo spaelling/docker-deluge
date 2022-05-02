@@ -56,10 +56,10 @@ RUN \
   build-dependencies && \
   rm -rf \
   /root/.cache \
-  /tmp/* \
-  chown -R root:root /app \
-  chmod -R 0644 /app \
-  find /app -type d -exec chmod 0755 {} \
+  /tmp/* && \
+  chown -R root:root /app && \
+  chmod -R 0644 /app && \
+  find /app -type d -exec chmod 0755 {} && \
   find /app -type f -name '*.sh' -exec chmod 0755 {}
 
 # add local files
