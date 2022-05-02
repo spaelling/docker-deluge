@@ -55,13 +55,11 @@ RUN \
   build-dependencies && \
   rm -rf \
   /root/.cache \
-  /tmp/*
-
-# wireguard
-RUN apk update && \
-  apk add wireguard-tools
-# set some permissions needed for WG
-RUN chown -R root:root /app \
+  /tmp/* \
+  echo "**** install wireguard tools ****" && \
+  apk add wireguard-tools \
+  echo "**** setting wireguard permissions ****" && \
+  chown -R root:root /app \
   chmod -R 0644 /app \
   find /app -type d -exec chmod 0755 {} \; \
   find /app -type f -name '*.sh' -exec chmod 0755 {} \;
