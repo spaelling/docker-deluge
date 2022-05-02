@@ -12,13 +12,6 @@ ENV PYTHON_EGG_CACHE="/config/plugins/.python-eggs"
 
 # install software
 RUN \
-  echo "**** install wireguard tools ****" \
-  apk add wireguard-tools \
-  echo "**** setting wireguard permissions ****" \
-  chown -R root:root /app \
-  chmod -R 0644 /app \
-  find /app -type d -exec chmod 0755 {} \
-  find /app -type f -name '*.sh' -exec chmod 0755 {} \
   echo "**** install build packages ****" && \
   apk add --no-cache --upgrade --virtual=build-dependencies \
   make \
@@ -28,6 +21,7 @@ RUN \
   python3-dev && \
   echo "**** install packages ****" && \
   apk add --no-cache \
+  wireguard-tools \
   curl \
   deluge \
   geoip \
@@ -62,7 +56,11 @@ RUN \
   build-dependencies && \
   rm -rf \
   /root/.cache \
-  /tmp/*
+  /tmp/* \
+  chown -R root:root /app \
+  chmod -R 0644 /app \
+  find /app -type d -exec chmod 0755 {} \
+  find /app -type f -name '*.sh' -exec chmod 0755 {} \  
 
 # add local files
 COPY root/ /
