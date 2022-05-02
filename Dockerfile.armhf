@@ -56,9 +56,9 @@ RUN \
   rm -rf \
   /root/.cache \
   /tmp/* \
-  echo "**** install wireguard tools ****" && \
+  echo "**** install wireguard tools ****" \
   apk add wireguard-tools \
-  echo "**** setting wireguard permissions ****" && \
+  echo "**** setting wireguard permissions ****" \
   chown -R root:root /app \
   chmod -R 0644 /app \
   find /app -type d -exec chmod 0755 {} \; \
