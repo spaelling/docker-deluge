@@ -9,17 +9,7 @@ _term() {
   # tail --pid=${pid} -f /dev/null
 }
 
-# DELUGE_LOGLEVEL=${DELUGE_LOGLEVEL:-info}
-
-# exec \
-#     s6-setuidgid abc /usr/bin/deluged -c /config \
-#     -d --loglevel="${DELUGE_LOGLEVEL}"
-
-# exec \
-#     s6-setuidgid abc wg-quick up wg0
-wg-quick up wg0
-
+exec \
+    s6-setuidgid abc wg-quick up wg0
+    
 # wg-quick up wg0
-# trap _term SIGTERM
-# wg show
-# sleep infinity
